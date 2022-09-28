@@ -32,6 +32,10 @@ const ProductSchema = new mongoose.Schema({
     },
     Views: {
         type: Number
+    },
+    Owner: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Merchant"
     }
 })
 

@@ -22,10 +22,10 @@ const MerchantSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    Messages: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Message"
-    }], 
+    // Messages: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Message"
+    // }], 
     Orders: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Order"
