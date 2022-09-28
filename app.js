@@ -12,6 +12,10 @@ const indexRoute = require("./routes/index")
 const app = express()
 const port = process.env.PORT
 
+mongoose.connect(process.env.MONGODB_URL, {
+    useUnifiedTopology: true
+})
+
 app.use(express.static("public"))
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride("_method"))
