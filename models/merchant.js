@@ -1,5 +1,5 @@
 const mongoose = require("mongoose")
-const PLM = require("passport-local-mongoose")
+const passportLocalMongoose = require("passport-local-mongoose")
 
 const MerchantSchema = new mongoose.Schema({
     Name: {
