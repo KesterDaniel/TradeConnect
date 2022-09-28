@@ -1,0 +1,41 @@
+const mongoose = require("mongoose")
+const passportLocalMongoose = require("passport-local-mongoose")
+
+const ProductSchema = new mongoose.Schema({
+    ProductName: {
+        type: String,
+        required: true
+    },
+    ImageOne: {
+        type: String,
+        required: true
+    },
+    ImageTwo: {
+        type: String,
+        required: true
+    },
+    ImageThree: {
+        type: String,
+        required: true
+    },
+    Description: {
+        type: String,
+        required: true
+    },
+    Category: {
+        type: String,
+        required: true
+    },
+    Price: {
+        type: Number,
+        required: true
+    },
+    Views: {
+        type: Number
+    }
+})
+
+ProductSchema.plugin(passportLocalMongoose)
+const Product = mongoose.model("Product", ProductSchema)
+
+module.exports = Product
