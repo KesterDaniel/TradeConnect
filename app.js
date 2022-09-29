@@ -3,12 +3,14 @@ const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 const methodOverride = require("method-override")
 const passport = require("passport")
-// const expressSession = require("express-session")
+const expressSession = require("express-session")
 const passportLocalMongose = require("passport-local-mongoose")
 const LocalStrategy = require("passport-local")
 const productRoute = require("./routes/products")
-const userRoute = require("./routes/users")
+const merchantRoute = require("./routes/merchantUser")
 const indexRoute = require("./routes/index")
+const Merchant = require("./models/merchant")
+const Customer = require("./models/customer")
 const app = express()
 const port = process.env.PORT
 
@@ -21,9 +23,31 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride("_method"))
 app.set("view engine", "ejs")
 
+app.use(expressSession({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false
+}))
+app.use(passport.initialize())
+app.use(passport.session())
+
+passport.use("MerchantLocal", new LocalStrategy(Merchant.authenticate()))
+passport.use("CustomerLocal", new LocalStrategy(Customer.authenticate()))
+
+
+
+passport.serializeUser(function(user, done) { 
+    done(null, user);
+  });
+  
+passport.deserializeUser(function(user, done) {
+if(user!=null)
+    done(null,user);
+});
 // app.use(productRoute)
 // app.use(userRoute)
 app.use(indexRoute)
+app.use(merchantRoute)
 
 app.listen(port, ()=>{
     console.log("server up")

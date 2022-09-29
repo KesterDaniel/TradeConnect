@@ -2,25 +2,35 @@ const mongoose = require("mongoose")
 const passportLocalMongoose = require("passport-local-mongoose")
 
 const MerchantSchema = new mongoose.Schema({
-    Name: {
+    FirstName: {
         type: String,
-        required: true
+        // required: true
+    },
+    LastName: {
+        type: String,
+    },
+    username: {
+        type: String
     },
     State: {
         type: String,
-        required: true
+        // required: true
     },
     Address: {
         type: String,
-        required: true
+        // required: true
     },
     PhoneNumber: {
         type: String,
-        required: true
+        // required: true
     },
     DisplayPic: {
         type: String,
-        required: true
+        // required: true
+    },
+    Password: {
+        type: String,
+        // required: true
     },
     // Messages: [{
     //     type: mongoose.Schema.Types.ObjectId,
