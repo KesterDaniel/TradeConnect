@@ -38,10 +38,8 @@ router.get("/merchant/login", (req, res)=>{
 })
 
 router.post("/merchant/login", passport.authenticate("MerchantLocal", {
-    // successRedirect: "/photos",
     failureRedirect: "merchant/login"
 }), (req, res)=>{
-    // req.flash("success", "Welcome back. Nice to see you again")
     res.redirect("/merchant")
 })
 
