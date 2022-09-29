@@ -5,11 +5,11 @@ const LocalStrategy = require("passport-local")
 const Merchant = require("../models/merchant")
 const middleware = require("../middleware/index")
 
-router.get("/regMerchant", (req, res)=>{
+router.get("/merchant/signup", (req, res)=>{
     res.render("regMerch")
 })
 
-router.post("/regMerchant", async(req, res)=>{
+router.post("/merchant/signup", async(req, res)=>{
     const username = req.body.username
     const FirstName = req.body.Merchant.FirstName
     const LastName = req.body.Merchant.LastName
@@ -33,6 +33,17 @@ router.get("/merchant", (req, res)=>{
     res.render("merchantPage", {merchant})
 })
 
+router.get("/merchant/login", (req, res)=>{
+    res.render("MerchLogin")
+})
+
+router.post("/merchant/login", passport.authenticate("MerchantLocal", {
+    // successRedirect: "/photos",
+    failureRedirect: "merchant/login"
+}), (req, res)=>{
+    // req.flash("success", "Welcome back. Nice to see you again")
+    res.redirect("/merchant")
+})
 
 
 
