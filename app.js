@@ -44,7 +44,7 @@ passport.deserializeUser(function(user, done) {
 if(user!=null)
     done(null,user);
 });
-// app.use(productRoute)
+app.use(productRoute)
 // app.use(userRoute)
 app.use(indexRoute)
 app.use(merchantRoute)

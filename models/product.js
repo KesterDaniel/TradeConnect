@@ -5,18 +5,22 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    ImageOne: {
-        type: String,
-        required: true
-    },
-    ImageTwo: {
-        type: String,
-        required: true
-    },
-    ImageThree: {
-        type: String,
-        required: true
-    },
+    // ImageOne: {
+    //     type: String,
+    //     required: true
+    // },
+    // ImageTwo: {
+    //     type: String,
+    //     required: true
+    // },
+    // ImageThree: {
+    //     type: String,
+    //     required: true
+    // },
+    Images: [{
+        type: String
+    }],
+    
     Description: {
         type: String,
         required: true
@@ -30,15 +34,18 @@ const ProductSchema = new mongoose.Schema({
         required: true
     },
     Views: {
-        type: Number
+        type: Number,
+        default: 0
     },
     Owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Merchant"
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Merchant"
+        },
+        username: String
     }
 })
 
-ProductSchema.plugin(passportLocalMongoose)
 const Product = mongoose.model("Product", ProductSchema)
 
 module.exports = Product
