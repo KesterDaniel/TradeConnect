@@ -23,4 +23,14 @@ router.post("/customer/signup", async(req, res)=>{
     }
 })
 
+router.get("/customer/login", (req, res)=>{
+    res.render("CustLogin")
+})
+
+router.post("/customer/login", passport.authenticate("CustomerLocal" , {
+    failureRedirect: "back"
+}), (req, res)=>{
+    res.redirect("/")
+})
+
 module.exports = router
