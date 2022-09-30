@@ -10,12 +10,7 @@ router.get("/merchant/signup", (req, res)=>{
 })
 
 router.post("/merchant/signup", async(req, res)=>{
-    const username = req.body.username
-    const FirstName = req.body.Merchant.FirstName
-    const LastName = req.body.Merchant.LastName
-    const State = req.body.Merchant.state
-    const Address = req.body.Merchant.Address
-    const PhoneNumber = req.body.Merchant.PhoneNumber
+    const {username, FirstName, LastName, State, Address, PhoneNumber} = req.body
     const password = req.body.password
     const merchant = new Merchant({username, FirstName, LastName, State, Address, PhoneNumber})
     try {

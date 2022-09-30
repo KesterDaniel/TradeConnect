@@ -53,7 +53,6 @@ router.post("/addProduct", parser.array("Images", 3), async(req, res)=>{
                 imageURIs.push(path);
             };
             product['Images'] = imageURIs; // add the urls to object
-
             await product.save();
             console.log("added new product")
             // res.redirect("back")

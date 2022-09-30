@@ -6,6 +6,7 @@ const passport = require("passport")
 const expressSession = require("express-session")
 const passportLocalMongose = require("passport-local-mongoose")
 const LocalStrategy = require("passport-local")
+const CustomerRoute = require("./routes/customerUser")
 const productRoute = require("./routes/products")
 const merchantRoute = require("./routes/merchantUser")
 const indexRoute = require("./routes/index")
@@ -45,7 +46,7 @@ if(user!=null)
     done(null,user);
 });
 app.use(productRoute)
-// app.use(userRoute)
+app.use(CustomerRoute)
 app.use(indexRoute)
 app.use(merchantRoute)
 

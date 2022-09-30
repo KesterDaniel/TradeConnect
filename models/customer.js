@@ -6,6 +6,10 @@ const CustomerSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    username:{
+        type: String,
+        required: true
+    },
     PhoneNumber:{
         type: String,
         required: true
@@ -17,6 +21,10 @@ const CustomerSchema = new mongoose.Schema({
     State:{
         type: String,
         required: true
+    },
+    password: {
+        type: String,
+        // required: true
     },
     Orders:[{
         type: mongoose.Schema.Types.ObjectId,
