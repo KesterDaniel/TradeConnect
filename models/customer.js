@@ -26,6 +26,9 @@ const CustomerSchema = new mongoose.Schema({
         type: String,
         // required: true
     },
+    isCustomer: {
+        type:Boolean
+    },
     Orders:[{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Order"

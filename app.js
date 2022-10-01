@@ -3,6 +3,7 @@ const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
 const methodOverride = require("method-override")
 const passport = require("passport")
+const flash = require("connect-flash")
 const expressSession = require("express-session")
 const passportLocalMongose = require("passport-local-mongoose")
 const LocalStrategy = require("passport-local")
@@ -29,8 +30,16 @@ app.use(expressSession({
     resave: false,
     saveUninitialized: false
 }))
+app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())
+
+app.use(function(req, res, next){
+    res.locals.currentUser = req.user
+    res.locals.error = req.flash("error")
+    res.locals.success = req.flash("success")
+    next()
+})
 
 passport.use("MerchantLocal", new LocalStrategy(Merchant.authenticate()))
 passport.use("CustomerLocal", new LocalStrategy(Customer.authenticate()))

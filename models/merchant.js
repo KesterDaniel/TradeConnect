@@ -32,6 +32,9 @@ const MerchantSchema = new mongoose.Schema({
         type: String,
         // required: true
     },
+    isMerchant: {
+        type: Boolean
+    },
     // Messages: [{
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: "Message"

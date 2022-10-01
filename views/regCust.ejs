@@ -1,3 +1,4 @@
+<%- include("partials/header") %>
 <h1>Customer signup</h1>
 
 <form action="/customer/signup" method="post">
@@ -7,5 +8,8 @@
     <input type="text" id="address" name="Address" placeholder="Address">
     <input type="text" id="state" name="State" placeholder="State">
     <input type="password" id="password" name="password" placeholder="Password">
+    <input type="checkbox" id="verify" value="true" name="isCustomer" placeholder="Agree to terms and conditions" required>
     <button>Submit</button>
 </form>
+
+<%- include("partials/footer") %>

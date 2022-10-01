@@ -9,10 +9,10 @@ router.get("/customer/signup", (req, res)=>{
 })
 
 router.post("/customer/signup", async(req, res)=>{
-    const { username, Name, PhoneNumber, Address, State } = req.body
+    const { username, Name, PhoneNumber, Address, State, isCustomer } = req.body
     const password = req.body.password
     
-    const customer = new Customer({username, Name, PhoneNumber, Address, State})
+    const customer = new Customer({username, Name, PhoneNumber, Address, State, isCustomer})
     try {
         await Customer.register(customer, password)
         await passport.authenticate("CustomerLocal")(req, res, ()=>{

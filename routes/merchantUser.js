@@ -10,9 +10,9 @@ router.get("/merchant/signup", (req, res)=>{
 })
 
 router.post("/merchant/signup", async(req, res)=>{
-    const {username, FirstName, LastName, State, Address, PhoneNumber} = req.body
+    const {username, FirstName, LastName, State, Address, PhoneNumber, isMerchant} = req.body
     const password = req.body.password
-    const merchant = new Merchant({username, FirstName, LastName, State, Address, PhoneNumber})
+    const merchant = new Merchant({username, FirstName, LastName, State, Address, PhoneNumber, isMerchant})
     try {
         await Merchant.register(merchant, password)
         await passport.authenticate("MerchantLocal")(req, res, ()=>{
@@ -25,7 +25,7 @@ router.post("/merchant/signup", async(req, res)=>{
 
 router.get("/merchant", (req, res)=>{
     const merchant = req.user
-    res.render("merchantPage", {merchant})
+    res.render("merchantPage")
 })
 
 router.get("/merchant/login", (req, res)=>{
