@@ -4,6 +4,7 @@ const Product = require("../models/product")
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
+const middleware = require("../middleware/index")
 
 
 cloudinary.config({
@@ -32,7 +33,7 @@ const storage = new CloudinaryStorage({
 
 const parser = multer({ storage: storage });
 
-router.get("/addProduct", (req, res)=>{
+router.get("/addProduct", middleware.IsMerchant, (req, res)=>{
     res.render("addproduct")
 })
 
