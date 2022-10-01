@@ -37,7 +37,7 @@ router.get("/addProduct", middleware.IsMerchant, (req, res)=>{
     res.render("addproduct")
 })
 
-router.post("/addProduct", parser.array("Images", 3), async(req, res)=>{
+router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), async(req, res)=>{
     const { ProductName, Description, Category, Price} = req.body
     try {
         let product = new Product({
@@ -53,13 +53,11 @@ router.post("/addProduct", parser.array("Images", 3), async(req, res)=>{
                 const { path } = file;
                 imageURIs.push(path);
             };
-            product['Images'] = imageURIs; // add the urls to object
+            product['Images'] = imageURIs;
+            product.Owner.id = currentUser.id
             await product.save();
             console.log("added new product")
-            // res.redirect("back")
-            // return res.status(201).json({ product });
-            return res.status(201).redirect("back");
-            // console.log(req.files)
+            return res.status(201).redirect("back");          
         }
     } catch (error) {
         console.log(error)
