@@ -35,6 +35,7 @@ router.get("/merchant/login", (req, res)=>{
 router.post("/merchant/login", passport.authenticate("MerchantLocal", {
     failureRedirect: "merchant/login"
 }), (req, res)=>{
+    
     res.redirect("/merchant")
 })
 

@@ -16,6 +16,7 @@ router.post("/customer/signup", async(req, res)=>{
     try {
         await Customer.register(customer, password)
         await passport.authenticate("CustomerLocal")(req, res, ()=>{
+            req.flash("success", "Welcome to TradeCon")
             res.redirect("/")
         })
     } catch (error) {
@@ -30,6 +31,7 @@ router.get("/customer/login", (req, res)=>{
 router.post("/customer/login", passport.authenticate("CustomerLocal" , {
     failureRedirect: "back"
 }), (req, res)=>{
+    req.flash("success", "Welcome back")
     res.redirect("/")
 })
 

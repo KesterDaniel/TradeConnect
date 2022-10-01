@@ -25,6 +25,8 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.use(methodOverride("_method"))
 app.set("view engine", "ejs")
 
+
+
 app.use(expressSession({
     secret: process.env.SESSION_SECRET,
     resave: false,

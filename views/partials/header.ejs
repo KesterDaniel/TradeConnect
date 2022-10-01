@@ -28,10 +28,23 @@
                 <% }else{ %>
                     <a class="nav-link" href="/customer/signup">Sign Up as customer </a>
                     <a class="nav-link" href="#">Logged in as <%= currentUser.username %> </a>
+                    <a class="nav-link" href="/logout">Log Out</a>
                 <% } %>
-                
             </div>
         </div>
     </nav>
+    <div id="carouselExampleCaptions" class="carousel slide "  data-bs-ride="carousel" data-bs-interval="2000" >
+        <div class="container">
+          <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger mt-2" role="alert">
+              <%= error %>
+            </div>
+          <% } %>
+          <% if(success && success.length > 0){ %>
+            <div class="alert alert-success mt-2" role="alert">
+              <%= success %>
+            </div>
+          <% } %>
+      </div>  
 
     
