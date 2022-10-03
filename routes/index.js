@@ -1,9 +1,10 @@
 const express = require("express")
 const router = express.Router()
+const Product = require("../models/product")
 
-router.get("/", (req, res)=>{
-    const customer = req.user
-    res.render("home")
+router.get("/", async(req, res)=>{
+    const allProducts = await Product.find({})
+    res.render("home", {allProducts})
 })
 
 router.get("/logout", (req, res, next)=>{

@@ -19,7 +19,7 @@ const storage = new CloudinaryStorage({
         folder: "Products",
         format: async (req, file) => {
             "jpg", "png";
-        }, // supports promises as well
+        }, 
         public_id: (req, file) => {
             console.log(
                 new Date().toISOString().replace(/:/g, "-") + file.originalname
@@ -54,7 +54,8 @@ router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), asy
                 imageURIs.push(path);
             };
             product['Images'] = imageURIs;
-            product.Owner.id = currentUser.id
+            product.Owner.id = req.user._id
+            product.Owner.username = req.user.username
             await product.save();
             console.log("added new product")
             return res.status(201).redirect("back");          
@@ -62,6 +63,10 @@ router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), asy
     } catch (error) {
         console.log(error)
     }
+})
+
+router.get("/:productId/view", (req, res)=>{
+    
 })
 
 module.exports = router
