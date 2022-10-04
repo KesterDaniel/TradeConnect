@@ -1,6 +1,9 @@
 const express = require("express")
 const router = express.Router()
 const Product = require("../models/product")
+const Order = require("../models/order")
+const Merchant = require("../models/merchant")
+const Customer = require("../models/customer")
 const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
@@ -58,15 +61,44 @@ router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), asy
             product.Owner.username = req.user.username
             await product.save();
             console.log("added new product")
-            return res.status(201).redirect("back");          
-        }
+            res.status(201).redirect("back"); 
+        }     
     } catch (error) {
-        console.log(error)
+        req.flash("error", "Something went wrong. Please check your connection and try again")
+        res.redirect("back")
     }
 })
 
-router.get("/:productId/view", (req, res)=>{
-    
+router.get("/product/:productId/", async(req, res)=>{
+    const product = await Product.findById(req.params.productId)
+    product.Views += 1
+    await product.save()
+    res.render("viewproduct", {product})
+})
+
+router.post("/product/:productId/order", middleware.IsCustomer, async(req, res)=>{
+    const product = await Product.findById(req.params.productId)
+    const OwnerId = product.Owner.id
+    const productOwner = await Merchant.findById(OwnerId)
+    const Buyer = await Customer.findById(req.user._id)
+    console.log(Buyer)
+    try {
+        const newOrder = await Order.create({
+            BuyerName: Buyer.Name,
+            Address: Buyer.Address,
+            PhoneNumber: Buyer.PhoneNumber,
+            Product: req.params.productId
+        })
+        await newOrder.save()
+        await Buyer.Orders.push(newOrder)
+        await Buyer.save()
+        await productOwner.Orders.push(newOrder)
+        await productOwner.save()
+        req.flash("success", "You have successfully place an order for this product. You will be contacted by the merchant.")
+        res.redirect("back")
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 module.exports = router

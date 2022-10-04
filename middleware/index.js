@@ -11,4 +11,12 @@ middlewareObj.IsMerchant = function(req, res, next){
     res.redirect("back")
 }
 
+middlewareObj.IsCustomer = function(req, res, next){
+    if(req.isAuthenticated() && req.user.isCustomer){
+        return next()
+    }
+    req.flash("error", "You need to be logged in first")
+    res.redirect("/customer/login")
+}
+
 module.exports = middlewareObj

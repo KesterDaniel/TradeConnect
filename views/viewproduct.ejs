@@ -1,0 +1,24 @@
+<%- include("partials/header") %>
+<div class="container">
+    <h2 style="text-align: center;"><%= product.ProductName %></h2>
+    <div class="row">
+        <% product.Images.forEach((prodImg)=>{ %>
+            <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
+                <div class="img-thumbnail">
+                    <img class="thumbnail img-responsive" width="100%" height="100%" src="<%= prodImg %>" />
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    <div style="text-align: center;">
+        <h2>Product Description</h2>
+        <p class="mb-2" style="font-size: small; color:gray;">Category: <%= product.Category %></p>
+        <p><%= product.Description %></p>
+        <p>Posted by: <%= product.Owner.username %></p>
+    </div>
+    <form method="post" action="/product/<%= product.id %>/order">
+        <button style="width: 100%;" class="btn btn-dark btn-block ms-auto">Place Order</button>
+    </form>
+</div>
+
+<%- include("partials/footer") %>
