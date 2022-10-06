@@ -84,7 +84,6 @@ router.post("/product/:productId/order", middleware.IsCustomer, async(req, res)=
     const OwnerId = product.Owner.id
     const productOwner = await Merchant.findById(OwnerId)
     const Buyer = await Customer.findById(req.user._id)
-    console.log(Buyer)
     try {
         const newOrder = await Order.create({
             BuyerName: Buyer.Name,
@@ -116,6 +115,16 @@ router.put("/product/:productId/edit", middleware.checkproductOwnership, async(r
     } catch (error) {
         req.flash("error", "Something went wrong. Please try again")
         res.redirect("back")
+    }
+})
+
+router.delete("/product/:productId", middleware.checkproductOwnership, async(req, res)=>{
+    try {
+        await Product.findByIdAndDelete(req.params.productId)
+        req.flash("success", "Deleted product")
+        res.redirect("back")
+    } catch (error) {
+        console.log(error)
     }
 })
 module.exports = router
