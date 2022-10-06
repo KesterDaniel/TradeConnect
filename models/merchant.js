@@ -1,12 +1,15 @@
 const mongoose = require("mongoose")
 const passportLocalMongoose = require("passport-local-mongoose")
-
+const validator = require("validator")
 const MerchantSchema = new mongoose.Schema({
     FirstName: {
         type: String,
         // required: true
     },
     LastName: {
+        type: String,
+    },
+    Email: {
         type: String,
     },
     username: {

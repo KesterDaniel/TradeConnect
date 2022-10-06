@@ -2,6 +2,7 @@ const express = require("express")
 const router = express.Router()
 const passport = require("passport")
 const LocalStrategy = require("passport-local")
+const validator = require("validator")
 const Merchant = require("../models/merchant")
 const middleware = require("../middleware/index")
 const Product = require("../models/product")
@@ -11,9 +12,13 @@ router.get("/merchant/signup", (req, res)=>{
 })
 
 router.post("/merchant/signup", async(req, res)=>{
-    const {username, FirstName, LastName, State, Address, PhoneNumber, isMerchant} = req.body
+    const {username, FirstName, LastName, State, Address, PhoneNumber, isMerchant, Email} = req.body
     const password = req.body.password
-    const merchant = new Merchant({username, FirstName, LastName, State, Address, PhoneNumber, isMerchant})
+    if(!validator.isEmail(Email)){
+        req.flash("error", "please enter a valid email address")
+        return res.redirect("back")
+    }
+    const merchant = new Merchant({username, FirstName, LastName, State, Address, PhoneNumber, isMerchant, Email})
     try {
         await Merchant.register(merchant, password)
         await passport.authenticate("MerchantLocal")(req, res, ()=>{
