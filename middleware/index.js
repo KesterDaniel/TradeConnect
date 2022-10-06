@@ -1,7 +1,30 @@
 const Merchant = require("../models/merchant")
 const Customer = require("../models/customer")
+const Product = require("../models/product")
 
 const middlewareObj = {}
+
+middlewareObj.checkproductOwnership = async function(req, res, next) {
+    if(req.isAuthenticated() && req.user.isMerchant){
+        try {
+            const foundproduct = await Product.findById(req.params.productId)
+            if(foundproduct.Owner.id.equals(req.user._id) ){
+                next()
+            
+            }else{
+                req.flash("error", "You don't permission to do that")
+                res.redirect("back")
+            }
+        } catch (error) {
+            req.flash("error", "Sorry, Photo not found")
+            res.redirect("back")
+        }
+    }else{
+        req.flash("error", "You need to be logged in to do that")
+        res.redirect("back")
+    }
+}
+
 
 middlewareObj.IsMerchant = function(req, res, next){
     if(req.isAuthenticated() && req.user.isMerchant){

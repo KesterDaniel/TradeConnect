@@ -8,6 +8,7 @@ const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
 const middleware = require("../middleware/index")
+const { application } = require("express")
 
 
 cloudinary.config({
@@ -61,11 +62,13 @@ router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), asy
             product.Owner.username = req.user.username
             await product.save();
             console.log("added new product")
+            req.flash("success", "You did it")
             res.status(201).redirect("back"); 
-        }     
+        }
     } catch (error) {
-        req.flash("error", "Something went wrong. Please check your connection and try again")
-        res.redirect("back")
+        console.log(error)
+        // req.flash("error", "Something went wrong. Please check your connection and try again")
+        // res.redirect("back")
     }
 })
 
@@ -101,4 +104,7 @@ router.post("/product/:productId/order", middleware.IsCustomer, async(req, res)=
     }
 })
 
+router.get("/product/:productId/edit", middleware.checkproductOwnership, async(req, res)=>{
+    res.render("productEditForm")
+})
 module.exports = router

@@ -1,5 +1,37 @@
 <%- include("partials/merchantheader") %>
-<h2>Merchants Home page</h2>
+
+<!-- <style>
+    #cardit{
+    /* margin-right: 10px;
+    background: #e8e8e8; */
+    padding-top: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    border: 1px solid #e8e8e8;
+    border-radius: 0.5em;
+    box-shadow: 6px 6px 12px #c5c5c5,
+                -6px -6px 12px #fff;
+}
+</style> -->
+
+<div class="row ms-auto mt-2" style="height: 100%;">
+    <% ownedProducts.forEach((product)=>{ %>
+      <div class="col-lg-3 col-md-3 col-sm-6">
+        <img src="<%= product.Images[0] %>" class="img-responsive" width="100%" height="50%"  >
+        <div class="caption">
+          <h4 class="mb-0"><%=  product.ProductName %></h4>
+          <p class="mb-0" style="font-size: small; color:gray;">Category: <%= product.Category %></p>
+          <p class="mb-1">Price: <span style="color: lightgreen;">NGN </span><%= product.Price %></p>
+          <p class="mb-1">Views: <%= product.Views %></p>
+        </div>
+        <!-- <p><a href="/product/<%= product.id %>" style="width: 100%;" class="btn btn-dark btn-block ms-auto">View this product</a></p> -->
+        <a href="/product/<%= product.id %>/edit" style="width: 100%;" class="btn btn-dark btn-block ms-auto">Edit this product</a>
+        <form action="/product/<%= product.id %>?_method=delete" method="post">
+            <a href="/product/<%= product.id %>" style="width: 100%;" class="btn btn-dark btn-block ms-auto">View this product</a>
+        </form>
+      </div>
+    <% }) %>
+  </div> 
 
 
 
