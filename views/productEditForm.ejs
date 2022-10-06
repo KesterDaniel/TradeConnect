@@ -1,1 +1,88 @@
-<h1>Edit page</h1>
+<%- include("partials/merchantheader") %>
+
+<form action="/product/<%= product.id %>/edit?_method=put" method="post">
+    <input type="text" id="name" name="product[ProductName]" value="<%= product.ProductName %>" placeholder="Product Name">
+    <Textarea id="describe" name="product[Description]"><%= product.Description %></Textarea>
+    <select id="category" name="product[Category]" >
+        <% if( product.Category  == "Clothing"){ %>
+            <option selected value="Clothing">Clothing</option>
+            <option value="Foot Wears">Foot Wears</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Gadgets">Gadgets</option>
+            <option value="Stationaries">Stationaries</option>
+            <option value="Beauty">Beauty</option>
+            <option value="House-Hold">House-Hold</option>
+            <option value="Others">Others</option>
+        <% }else if(product.Category == "Foot Wears"){ %>
+            <option value="Clothing">Clothing</option>
+            <option selected value="Foot Wears">Foot Wears</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Gadgets">Gadgets</option>
+            <option value="Stationaries">Stationaries</option>
+            <option value="Beauty">Beauty</option>
+            <option value="House-Hold">House-Hold</option>
+            <option value="Others">Others</option>
+        <% }else if(product.Category == "Accessories"){ %>
+            <option value="Clothing">Clothing</option>
+            <option  value="Foot Wears">Foot Wears</option>
+            <option selected value="Accessories">Accessories</option>
+            <option value="Gadgets">Gadgets</option>
+            <option value="Stationaries">Stationaries</option>
+            <option value="Beauty">Beauty</option>
+            <option value="House-Hold">House-Hold</option>
+            <option value="Others">Others</option>
+        <% }else if(product.Category == "Gadgets"){ %>
+            <option value="Clothing">Clothing</option>
+            <option  value="Foot Wears">Foot Wears</option>
+            <option  value="Accessories">Accessories</option>
+            <option selected value="Gadgets">Gadgets</option>
+            <option value="Stationaries">Stationaries</option>
+            <option value="Beauty">Beauty</option>
+            <option value="House-Hold">House-Hold</option>
+            <option value="Others">Others</option>
+        <% }else if(product.Category == "Stationaries"){ %>
+            <option value="Clothing">Clothing</option>
+            <option  value="Foot Wears">Foot Wears</option>
+            <option  value="Accessories">Accessories</option>
+            <option  value="Gadgets">Gadgets</option>
+            <option selected value="Stationaries">Stationaries</option>
+            <option value="Beauty">Beauty</option>
+            <option value="House-Hold">House-Hold</option>
+            <option value="Others">Others</option>
+        <% }else if(product.Category == "Beauty"){ %>
+            <option value="Clothing">Clothing</option>
+            <option  value="Foot Wears">Foot Wears</option>
+            <option  value="Accessories">Accessories</option>
+            <option  value="Gadgets">Gadgets</option>
+            <option  value="Stationaries">Stationaries</option>
+            <option selected value="Beauty">Beauty</option>
+            <option value="House-Hold">House-Hold</option>
+            <option value="Others">Others</option>
+        <% }else if(product.Category == "House-Hold"){ %>
+            <option value="Clothing">Clothing</option>
+            <option  value="Foot Wears">Foot Wears</option>
+            <option  value="Accessories">Accessories</option>
+            <option  value="Gadgets">Gadgets</option>
+            <option  value="Stationaries">Stationaries</option>
+            <option  value="Beauty">Beauty</option>
+            <option selected  value="House-Hold">House-Hold</option>
+            <option value="Others">Others</option>
+        <% }else if(product.Category == "Others"){ %>
+            <option value="Clothing">Clothing</option>
+            <option  value="Foot Wears">Foot Wears</option>
+            <option  value="Accessories">Accessories</option>
+            <option  value="Gadgets">Gadgets</option>
+            <option  value="Stationaries">Stationaries</option>
+            <option  value="Beauty">Beauty</option>
+            <option value="House-Hold">House-Hold</option>
+            <option selected value="Others">Others</option>
+        <% } %>
+       
+    </select>
+    <input type="number" id="price" name="product[Price]" value="<%= product.Price %>" placeholder="Price in Naira">
+    <button>Submit</button>
+</form>
+
+
+<%- include("partials/merchantfooter") %>
+

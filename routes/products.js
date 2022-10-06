@@ -105,6 +105,17 @@ router.post("/product/:productId/order", middleware.IsCustomer, async(req, res)=
 })
 
 router.get("/product/:productId/edit", middleware.checkproductOwnership, async(req, res)=>{
-    res.render("productEditForm")
+    const product = await Product.findById(req.params.productId)
+    res.render("productEditForm", {product})
+})
+
+router.put("/product/:productId/edit", middleware.checkproductOwnership, async(req, res)=>{
+    try {
+        await Product.findByIdAndUpdate(req.params.productId, req.body.product)
+        res.redirect("/merchant")
+    } catch (error) {
+        req.flash("error", "Something went wrong. Please try again")
+        res.redirect("back")
+    }
 })
 module.exports = router
