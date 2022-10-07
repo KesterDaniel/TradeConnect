@@ -8,8 +8,8 @@ const cloudinary = require("cloudinary").v2;
 const { CloudinaryStorage } = require("multer-storage-cloudinary");
 const multer = require("multer");
 const middleware = require("../middleware/index")
-const { application } = require("express")
-
+const nodemailer = require("nodemailer")
+const message = require("../afterware/messaging")
 
 cloudinary.config({
     cloud_name: 'do1xoszkp',
@@ -85,17 +85,23 @@ router.post("/product/:productId/order", middleware.IsCustomer, async(req, res)=
     const productOwner = await Merchant.findById(OwnerId)
     const Buyer = await Customer.findById(req.user._id)
     try {
+        // const prodInfo = {
+        //     _id: req.params.productId,
+        //     ProductName: product.ProductName
+        // }
         const newOrder = await Order.create({
             BuyerName: Buyer.Name,
             Address: Buyer.Address,
             PhoneNumber: Buyer.PhoneNumber,
-            Product: req.params.productId
         })
+        newOrder.Product.id = req.params.productId
+        newOrder.Product.ProductName = product.ProductName
         await newOrder.save()
         await Buyer.Orders.push(newOrder)
         await Buyer.save()
         await productOwner.Orders.push(newOrder)
         await productOwner.save()
+        message(productOwner.Email, `You have received an order from ${Buyer.Name} for the product ${product.ProductName}. Please contact the customer as soon as possible. Customer Number is ${Buyer.PhoneNumber}.`)
         req.flash("success", "You have successfully place an order for this product. You will be contacted by the merchant.")
         res.redirect("back")
     } catch (error) {
@@ -127,4 +133,6 @@ router.delete("/product/:productId", middleware.checkproductOwnership, async(req
         console.log(error)
     }
 })
+
+
 module.exports = router

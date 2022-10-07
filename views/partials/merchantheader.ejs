@@ -20,7 +20,7 @@
            <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
             <div class="navbar-nav ms-auto">
                 <a class="nav-link" href="/addProduct">Add Product</a>
-                <a class="nav-link" href="#">Orders</a>
+                <a class="nav-link" href="/merchant/<%= currentUser._id %>/orders">Orders</a>
                 <a class="nav-link" href="#">Logged in as <%= currentUser.username %> </a>
                 <a class="nav-link" href="/logout">Log Out</a>
             </div>
