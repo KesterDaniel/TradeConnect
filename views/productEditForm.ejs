@@ -80,6 +80,13 @@
        
     </select>
     <input type="number" id="price" name="product[Price]" value="<%= product.Price %>" placeholder="Price in Naira">
+    <% if(product.Availability === "true"){ %>
+        <span>Available: </span><input type="radio" id="available" name="product[Availability]" value="true" checked>
+        <span>Not Available: </span><input type="radio" id="available" name="product[Availability]" value="false">
+    <% }else{ %>
+        <span>Available: </span><input type="radio" id="available" name="product[Availability]" value="true">
+        <span>Not Available: </span><input type="radio" id="available" name="product[Availability]" value="false" checked>
+    <% } %>
     <button>Submit</button>
 </form>
 

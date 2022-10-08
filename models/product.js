@@ -43,6 +43,10 @@ const ProductSchema = new mongoose.Schema({
             ref: "Merchant"
         },
         username: String
+    },
+    Availability: {
+        type: String,
+        default: true
     }
 })
 
