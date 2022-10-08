@@ -29,10 +29,10 @@ const CustomerSchema = new mongoose.Schema({
     isCustomer: {
         type:Boolean
     },
-    Orders:[{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Order"
-    }]
+    // Orders:[{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Order"
+    // }]
 })
 
 CustomerSchema.plugin(passportLocalMongoose)

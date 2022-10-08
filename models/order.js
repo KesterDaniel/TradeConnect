@@ -10,11 +10,19 @@ const OrderSchema = new mongoose.Schema({
         required: true
     },
     Product: {
-        id:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Product"
-        },
-        ProductName: String
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product"
+    },
+    ProductName: {
+        type: String
+    },
+    Merchant: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Merchant"
+    },
+    Buyer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Customer"
     },
     PhoneNumber: {
         type: String,

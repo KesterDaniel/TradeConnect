@@ -42,10 +42,10 @@ const MerchantSchema = new mongoose.Schema({
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: "Message"
     // }], 
-    Orders: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Order"
-    }]
+    // Orders: [{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: "Order"
+    // }]
 })
 
 MerchantSchema.plugin(passportLocalMongoose)

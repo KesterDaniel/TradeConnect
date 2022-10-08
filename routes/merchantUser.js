@@ -53,8 +53,8 @@ router.get("/merchant/:MerchantId/orders", async(req, res)=>{
     try {
         const merchant = await Merchant.findById(req.params.MerchantId)
         const orders = await merchant.populate("Orders")
-        const hisOrders = orders.Orders
-        console.log(hisOrders)
+        // const hisOrders = orders.Orders
+        console.log(orders)
         // const merchOrders = merchant.Orders
         // const allOrders = []
         // merchOrders.forEach(async(order)=>{
