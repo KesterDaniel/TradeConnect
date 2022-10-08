@@ -51,17 +51,11 @@ router.post("/merchant/login", passport.authenticate("MerchantLocal", {
 
 router.get("/merchant/:MerchantId/orders", async(req, res)=>{
     try {
-        const merchant = await Merchant.findById(req.params.MerchantId)
-        const orders = await merchant.populate("Orders")
-        // const hisOrders = orders.Orders
-        console.log(orders)
-        // const merchOrders = merchant.Orders
-        // const allOrders = []
-        // merchOrders.forEach(async(order)=>{
-        //    const theOrder = await Order.findById(order._id)
-        //    allOrders.push(theOrder)
-        // })
-        // console.log(allOrders)
+       const orders = await Order.find({})
+       const merchOrders = orders.filter((order)=>
+        order.Merchant == req.user._id
+       )
+       res.render("merchOrders", {merchOrders})
     } catch (error) {
         console.log(error)
     }
