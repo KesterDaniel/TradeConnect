@@ -100,9 +100,14 @@ router.post("/product/:productId/order", middleware.IsCustomer, middleware.order
         await newOrder.save()
         await Buyer.save()
         await productOwner.save()
+        const msg = `
+        <p>You have received an order from ${Buyer.Name} for the product ${product.ProductName}. Please contact the customer as soon as possible.</p>
+        <p>Please contact the customer as soon as possible. Customer Number is ${Buyer.PhoneNumber}.</p>
+        `
         // message(productOwner.Email, `You have received an order from ${Buyer.Name} for the product ${product.ProductName}. Please contact the customer as soon as possible. Customer Number is ${Buyer.PhoneNumber}.`)
+        message(productOwner.Email, msg)
         req.flash("success", "You have successfully place an order for this product. You will be contacted by the merchant.")
-        res.redirect("back")
+        res.redirect("/")
     } catch (error) {
         console.log(error)
     }
