@@ -16,6 +16,9 @@ const OrderSchema = new mongoose.Schema({
     ProductName: {
         type: String
     },
+    ProductImage: {
+        type: String
+    },
     Merchant: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Merchant"

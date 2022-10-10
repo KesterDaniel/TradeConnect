@@ -94,7 +94,8 @@ router.post("/product/:productId/order", middleware.IsCustomer, middleware.order
             Merchant: OwnerId,
             Buyer: req.user._id,
             ProductName: product.ProductName,
-            Product: req.params.productId
+            Product: req.params.productId,
+            ProductImage: product.Images[0]
         })
         await newOrder.save()
         await Buyer.save()

@@ -46,7 +46,7 @@ middlewareObj.IsCustomer = function(req, res, next){
 middlewareObj.orderPlaced = async function(req, res, next){
     const allOrders = await Order.find({})
     const userOrders = allOrders.filter((order)=>
-        order.Buyer == req.user._id
+        order.Buyer == req.user._id && order.Product == req.params.productId
     )
 
     if(userOrders.length === 0){

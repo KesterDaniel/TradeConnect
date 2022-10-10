@@ -53,7 +53,7 @@ router.get("/merchant/:MerchantId/orders", async(req, res)=>{
     try {
        const orders = await Order.find({})
        const merchOrders = orders.filter((order)=>
-        order.Merchant == req.user._id
+        order.Merchant == req.params.MerchantId
        )
        res.render("merchOrders", {merchOrders})
     } catch (error) {
