@@ -74,9 +74,10 @@ router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), asy
 
 router.get("/product/:productId/", async(req, res)=>{
     const product = await Product.findById(req.params.productId)
+    const ProductOwner = await Merchant.findById(product.Owner.id)
     product.Views += 1
     await product.save()
-    res.render("viewproduct", {product})
+    res.render("viewproduct", {product, ProductOwner})
 })
 
 router.post("/product/:productId/order", middleware.IsCustomer, middleware.orderPlaced, async(req, res)=>{
