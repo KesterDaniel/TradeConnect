@@ -10,7 +10,7 @@ function message(merchantEmail, msgTxt){
     service: "gmail",
     auth: {
       user: 'tradeconnect59@gmail.com',
-      pass: "pwvagcbojodcehlz"
+      pass: process.env.GMAILPASS
     },
     // tls: {
     //   rejectUnauthorized: false
