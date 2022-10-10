@@ -1,6 +1,7 @@
 const Merchant = require("../models/merchant")
 const Customer = require("../models/customer")
 const Product = require("../models/product")
+const Order = require("../models/order")
 
 const middlewareObj = {}
 
@@ -42,4 +43,20 @@ middlewareObj.IsCustomer = function(req, res, next){
     res.redirect("/customer/login")
 }
 
+middlewareObj.orderPlaced = async function(req, res, next){
+    const allOrders = await Order.find({})
+    // let userOrders = [] 
+    const userOrders = allOrders.filter((order)=>
+        order.Buyer == req.user._id
+    )
+
+    // console.log(userOrders)
+
+    if(userOrders.length === 0){
+        return next()
+    }
+    console.log("ordeer already exists")
+    req.flash("error", "You have alraedy placed an order for this product")
+    res.redirect("back")
+}
 module.exports = middlewareObj

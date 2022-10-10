@@ -79,11 +79,12 @@ router.get("/product/:productId/", async(req, res)=>{
     res.render("viewproduct", {product})
 })
 
-router.post("/product/:productId/order", middleware.IsCustomer, async(req, res)=>{
+router.post("/product/:productId/order", middleware.IsCustomer, middleware.orderPlaced, async(req, res)=>{
     const product = await Product.findById(req.params.productId)
     const OwnerId = product.Owner.id
     const productOwner = await Merchant.findById(OwnerId)
     const Buyer = await Customer.findById(req.user._id)
+    
     try {
         const newOrder = await Order.create({
             BuyerName: Buyer.Name,

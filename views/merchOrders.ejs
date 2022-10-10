@@ -1,0 +1,16 @@
+<%- include("partials/merchantheader.ejs") %>
+
+<div class="container">
+    <% merchOrders.forEach((order)=>{ %>
+        <div>
+            <div>
+                <h2><%= order.ProductName %></h2>
+                <p><%= order.BuyerName %></p>
+                <p>Contact: <%= order.PhoneNumber %></p>
+            </div>
+        </div>
+    <% }) %>
+</div>
+
+
+<%- include("partials/merchantfooter.ejs") %>

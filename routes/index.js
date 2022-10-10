@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const Product = require("../models/product")
+const middleware = require("../middleware/index")
 
 router.get("/", async(req, res)=>{
     const allProducts = await Product.find({})
