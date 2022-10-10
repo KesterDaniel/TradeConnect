@@ -1,5 +1,15 @@
 <%- include("partials/merchantheader.ejs") %>
 
+<% if(merchOrders.length === 0){ %>
+    <div class="container">
+        <p>Dear Merchant. It seems you haven't received any orders for your product.</p>
+        <p>Please check back after some time. :)</p>
+        <button class="btn btn-dark"><a href="/merchant">Home</a></button>
+    </div>
+<% }else{ %>
+
+<% } %>
+
 <div class="container">
     <% merchOrders.forEach((order)=>{ %>
         <div>

@@ -93,15 +93,10 @@ router.post("/product/:productId/order", middleware.IsCustomer, middleware.order
             Merchant: OwnerId,
             Buyer: req.user._id,
             ProductName: product.ProductName,
-            // ProductName: product.ProductName,
             Product: req.params.productId
         })
-        // newOrder.Product.id = req.params.productId
-        // newOrder.Product.ProductName = product.ProductName
         await newOrder.save()
-        // await Buyer.Orders.push(newOrder)
         await Buyer.save()
-        // await productOwner.Orders.push(newOrder)
         await productOwner.save()
         // message(productOwner.Email, `You have received an order from ${Buyer.Name} for the product ${product.ProductName}. Please contact the customer as soon as possible. Customer Number is ${Buyer.PhoneNumber}.`)
         req.flash("success", "You have successfully place an order for this product. You will be contacted by the merchant.")
