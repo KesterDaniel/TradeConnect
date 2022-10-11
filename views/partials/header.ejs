@@ -1,55 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/assets/jquery-3.6.0.min.js"></script>
-    <script>src="/assets/bootstrapscript.js"</script>
-    <link rel="stylesheet" href="/assets/bootstrapstyle.css">
-    <link rel="stylesheet" href="/assets/list-groups.css">
-    <link rel="stylesheet" href="assets/style.css">
-    <title>TradeCon</title>
-</head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container-fluid">
-          <% if(!currentUser){ %>
-            <a class="navbar-brand" href="/">TradeCon</a>
-          <% }else{ %>
-            <a class="navbar-brand" href="/">TradeCon</a>
-            <a class="nav-link" href="/customer/<%= currentUser._id %>/orders">Cart</a>
-          <% } %>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>   
-           <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> 
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="/merchant/signup">Sign Up as Merchant</a>
-                <a class="nav-link" href="/merchant/login">Log In as Merchant</a>
-                <% if(!currentUser){ %>
-                    <a class="nav-link" href="/customer/signup">Sign Up as Customer</a>
-                    <a class="nav-link" href="/customer/login">Log In as Customer</a>
-                <% }else{ %>
-                    <a class="nav-link" href="/customer/signup">Sign Up as customer </a>
-                    <a class="nav-link" href="#">Logged in as <%= currentUser.username %> </a>
-                    <a class="nav-link" href="/logout">Log Out</a>
-                <% } %>
-            </div>
-        </div>
-    </nav>
-    <div id="carouselExampleCaptions" class="carousel slide "  data-bs-ride="carousel" data-bs-interval="2000" >
-        <div class="container">
-          <% if(error && error.length > 0){ %>
-            <div class="alert alert-danger mt-2" role="alert">
-              <%= error %>
-            </div>
-          <% } %>
-          <% if(success && success.length > 0){ %>
-            <div class="alert alert-success mt-2" role="alert">
-              <%= success %>
-            </div>
-          <% } %>
-      </div>  
-
-    
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>TradeCon</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/assets/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+      <!-- Navigation-->
+      <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href="/">TradeCon</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  Menu
+                  <i class="fas fa-bars ms-1"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                      <!-- <li class="nav-item"><a class="nav-link" href="/merchant/signup">Register Merchant</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/merchant/login">Merchant Login</a></li> -->
+                      <% if(!currentUser){ %>
+                        <li class="nav-item"><a class="nav-link" href="/merchant/login">Merchant Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/customer/login">Customer Login</a></li>  
+                      <% }else{ %>
+                        <li class="nav-item"><a class="nav-link" href="/customer/<%= currentUser._id %>/orders">Cart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/merchant/login">Merchant Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Logged in as <%= currentUser.username %></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                      <% } %>
+                  </ul>
+              </div>
+          </div>
+      </nav>

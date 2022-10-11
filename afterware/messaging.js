@@ -4,7 +4,6 @@ const nodemailer = require("nodemailer")
 function message(merchantEmail, msgTxt){
 
   var transporter = nodemailer.createTransport({
-    // host: "smtp.gmail.com",
     secure: true,
     port: 465,
     service: "gmail",
@@ -12,15 +11,12 @@ function message(merchantEmail, msgTxt){
       user: 'tradeconnect59@gmail.com',
       pass: process.env.GMAILPASS
     },
-    // tls: {
-    //   rejectUnauthorized: false
-    // }
   });
   
   var mailOptions = {
-    from: 'kesterdaniel401@gmail.com',
+    from: 'tradeconnect59@gmail.com',
     to: merchantEmail,
-    subject: 'Sending Email using Node.js',
+    subject: 'Order Received',
     html: msgTxt
   };
   

@@ -1,8 +1,68 @@
 <%- include("partials/header") %>
+      <!-- Masthead-->
+      <header class="masthead">
+          <div class="container pt-3">
+              <div class="masthead-subheading">Welcome To TradeCon!</div>
+              <!-- <div class="masthead-subheading">Establishing connections between buyers and sellers</div> -->
+              <a class="btn btn-primary btn-lg text-uppercase mb-2" href="/merchant/signup">Merchant Sign Up</a>
+              <a class="btn btn-primary btn-lg text-uppercase mb-2" href="/customer/signup">Customer Sign Up</a>
+          </div>
+      </header>
+      <section class="py-5">
+        <div class="container px-4 px-lg-5 mt-5">
+          <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <% allProducts.forEach((product)=>{ %>
+              <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <img class="card-img-top" src="<%= product.Images[0] %>" width="100%" height="50%" alt="..." />
+                    <!-- Product details-->
+                    <div class="card-body p-1">
+                        <div class="text-center">
+                            <!-- Product name-->
+                            <h5 class="fw-bolder"><%= product.ProductName %></h5>
+                            <p>Category: <%= product.Category %></p>
+                            <!-- Product price-->
+                            NGN <%= product.Price %>
+                        </div>
+                    </div>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/<%= product.id %>">View product</a></div>
+                    </div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+      <footer class="py-5 bg-dark">
+        <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeCon 2022</p></div>
+    </footer>
+      <!-- <div class="container">
+        <% if(error && error.length > 0){ %>
+          <div class="alert alert-danger mt-2" role="alert">
+            <%= error %>
+          </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+          <div class="alert alert-success mt-2" role="alert">
+            <%= success %>
+          </div>
+        <% } %>
+      </div>   -->
+     
 
 
-
-<div class="row ms-auto mt-2">
+<!-- <header class="py-5">
+  <div class="container px-4 px-lg-5 my-5">
+      <div class="text-center text-white">
+          <h1 class="display-4 fw-bolder">Shop in style</h1>
+          <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+      </div>
+  </div>
+</header> -->
+<!-- <div class="row ms-auto mt-2">
   <% allProducts.forEach((product)=>{ %>
     <div class="col-lg-3 col-md-3 col-sm-6">
       <img src="<%= product.Images[0] %>" class="img-responsive" width="100%" height="50%"  >
@@ -14,12 +74,11 @@
       <p><a href="/product/<%= product.id %>" style="width: 100%;" class="btn btn-dark btn-block ms-auto">View this product</a></p>
     </div>
   <% }) %>
-</div> 
-
-
-
-
-
-
+</div>  -->
 
 <%- include("partials/footer") %>
+
+
+
+
+

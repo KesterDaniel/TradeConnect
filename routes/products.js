@@ -62,8 +62,8 @@ router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), asy
             product.Owner.username = req.user.username
             await product.save();
             console.log("added new product")
-            req.flash("success", "You did it")
-            res.status(201).redirect("back"); 
+            req.flash("success", "Successfully added a new product")
+            res.status(201).redirect("/merchant"); 
         }
     } catch (error) {
         console.log(error)
@@ -101,8 +101,12 @@ router.post("/product/:productId/order", middleware.IsCustomer, middleware.order
         await Buyer.save()
         await productOwner.save()
         const msg = `
-        <p>You have received an order from ${Buyer.Name} for the product ${product.ProductName}. Please contact the customer as soon as possible.</p>
-        <p>Please contact the customer as soon as possible. Customer Number is ${Buyer.PhoneNumber}.</p>
+        <p>You have received an order for a product on your TradeCon account.</p>
+        <p>Buyer's Name: ${Buyer.Name}</p>
+        <p>Product Name: ${product.ProductName}</p>
+        <p>Contact Buyer: ${Buyer.PhoneNumber}</p>
+        <img src="${product.Images[0]}">
+        <p>Please contact the customer as soon as possible.</p>
         `
         // message(productOwner.Email, `You have received an order from ${Buyer.Name} for the product ${product.ProductName}. Please contact the customer as soon as possible. Customer Number is ${Buyer.PhoneNumber}.`)
         message(productOwner.Email, msg)
