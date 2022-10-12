@@ -110,8 +110,9 @@ router.post("/product/:productId/order", middleware.IsCustomer, middleware.order
         `
         // message(productOwner.Email, `You have received an order from ${Buyer.Name} for the product ${product.ProductName}. Please contact the customer as soon as possible. Customer Number is ${Buyer.PhoneNumber}.`)
         message(productOwner.Email, msg)
+        console.log("new order")
         req.flash("success", "You have successfully place an order for this product. You will be contacted by the merchant.")
-        res.redirect("/")
+        res.redirect("back")
     } catch (error) {
         console.log(error)
     }

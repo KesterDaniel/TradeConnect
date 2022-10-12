@@ -1,25 +1,107 @@
-<%- include("partials/header") %>
-<div class="container">
-    <h2 style="text-align: center;"><%= product.ProductName %></h2>
-    <div class="row">
-        <% product.Images.forEach((prodImg)=>{ %>
-            <div class="col-lg-3 col-md-3 col-sm-6 mb-3">
-                <div class="img-thumbnail">
-                    <img class="thumbnail img-responsive" width="100%" height="100%" src="<%= prodImg %>" />
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>TradeCon</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/assets/css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+      <!-- Navigation-->
+      <!-- <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav"> -->
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" id="mainNav">
+            <div class="container">
+              <a class="navbar-brand" href="/">TradeCon</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  Menu
+                  <i class="fas fa-bars ms-1"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarResponsive">
+                  <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                      <!-- <li class="nav-item"><a class="nav-link" href="/merchant/signup">Register Merchant</a></li>
+                      <li class="nav-item"><a class="nav-link" href="/merchant/login">Merchant Login</a></li> -->
+                      <% if(!currentUser){ %>
+                        <li class="nav-item"><a class="nav-link" href="/merchant/login">Merchant Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/customer/login">Customer Login</a></li>  
+                      <% }else{ %>
+                        <li class="nav-item"><a class="nav-link" href="/customer/<%= currentUser._id %>/orders">Cart</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/merchant/login">Merchant Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Logged in as <%= currentUser.username %></a></li>
+                        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                      <% } %>
+                  </ul>
+              </div>
+          </div>
+        </nav>
+        <div class="container">
+            <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger mt-2" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
+            <% if(success && success.length > 0){ %>
+            <div class="alert alert-success mt-2" role="alert">
+                <%= success %>
+            </div>
+            <% } %>
+        </div>  
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="<%= product.Images[0] %>" alt="..." /></div>
+                    <div class="col-md-6">
+                        <div class="small mb-1">SKU: BST-498</div>
+                        <h1 class="display-5 fw-bolder"><%= product.ProductName %></h1>
+                        <div class="fs-5 mb-5">
+                            <!-- <span class="text-decoration-line-through">$45.00</span> -->
+                            <span>NGN <%= product.Price %></span>
+                        </div>
+                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                        <div class="d-flex">
+                            <!-- <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" /> -->
+                            <!-- <form action="/product/<%= product._id %>/order" method="post">
+                                <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                    <i class="bi-cart-fill me-1"></i>
+                                    Place Order
+                                </button>
+                            </form> -->
+                            <form method="post" action="/product/<%= product.id %>/order">
+                                <button style="width: 100%;" class="btn btn-dark btn-block ms-auto">Place Order</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
-        <% }) %>
-    </div>
-    <div style="text-align: center;">
-        <h2>Product Description</h2>
-        <p class="mb-2" style="font-size: small; color:gray;">Category: <%= product.Category %></p>
-        <p><%= product.Description %></p>
-        <p>Posted by: <%= product.Owner.username %></p>
-        <p>Contact Merchant: <%= ProductOwner.PhoneNumber %></p>
-    </div>
-    <form method="post" action="/product/<%= product.id %>/order">
-        <button style="width: 100%;" class="btn btn-dark btn-block ms-auto">Place Order</button>
-    </form>
-</div>
+        </section>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+        <script src="/assets/js/scripts.js"></script>
+    </body>
+</html>
 
-<%- include("partials/footer") %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
