@@ -45,8 +45,19 @@ router.get("/customer/:customerID/orders", middleware.IsCustomer, async(req, res
         )
         res.render("custOrders", {custOrders})
     } catch (error) {
-        
+        console.log(error)
     }
 })
 
+router.delete("/customer/:customerID/:orderID", middleware.ownOrder, async(req, res)=>{
+    try {
+        await Order.findByIdAndDelete(req.params.orderID)
+        req.flash("success", "You have deleted a product")
+        res.redirect("back")
+    } catch (error) {
+        req.flash("error", "Something went wrong. Please contact support")
+        res.redirect("back")
+        console.log(error)
+    }
+})
 module.exports = router

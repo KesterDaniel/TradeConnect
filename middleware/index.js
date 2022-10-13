@@ -56,4 +56,24 @@ middlewareObj.orderPlaced = async function(req, res, next){
     req.flash("error", "You have alraedy placed an order for this product")
     res.redirect("back")
 }
+
+middlewareObj.ownOrder = async function(req, res, next){
+    if(req.isAuthenticated && req.user.isCustomer){
+        const allOrders = await Order.find({})
+        const userOrders = allOrders.filter((order)=>
+            order.Buyer == req.user._id && order._id == req.params.orderID
+        )
+    
+        if(userOrders.length !== 0){
+            return next()
+            // return console.log("we can proceed")
+        }
+        // console.log("ordeer already exists")
+        req.flash("error", "Process cant continue")
+        res.redirect("back")
+    }else{
+        req.flash("error", "You have to be logged in as a customer")
+        res.redirect("/customer/login")
+    }
+}
 module.exports = middlewareObj

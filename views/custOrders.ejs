@@ -1,4 +1,4 @@
-<%- include("partials/header") %>
+<%- include("partials/pagesheader") %>
 
 <style>
     .bd-placeholder-img {
@@ -60,14 +60,16 @@
     </div>
 <% }else{ %>
     <div class="container">
-        <div class="list-group w-auto">
+        <div class="list-group w-auto mt-3">
             <% custOrders.forEach((order)=>{ %>
                 <div class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                     <img src="<%= order.ProductImage %>" alt="twbs" width="100" height="100" class=" flex-shrink-0">
                     <div class="d-flex gap-2 w-100 justify-content-between">
                       <div>
                         <h2 class="mb-2"><a style="text-decoration: none;" href="/product/<%= order.Product %>"><%= order.ProductName %></a></h2>
-                        <button class="btn btn-dark">Delete order</button>
+                        <form method="post" action="/customer/<%= currentUser._id %>/<%= order._id %>?_method=delete">
+                          <button class="btn btn-dark">Delete order</button>
+                        </form>
                       </div>
                     </div>
                 </div>
@@ -83,4 +85,8 @@
     </div>
 <% } %>
 
-<%- include("partials/footer") %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="/assets/js/scripts.js"></script>
+</body>
+</html>
