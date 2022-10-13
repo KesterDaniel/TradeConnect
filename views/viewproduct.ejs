@@ -66,15 +66,9 @@
                             <!-- <span class="text-decoration-line-through">$45.00</span> -->
                             <span>NGN <%= product.Price %></span>
                         </div>
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
+                        <div class="lead"><%= product.Description %></div>
+                        <p>Contact Seller: <%= ProductOwner.PhoneNumber %></p>
                         <div class="d-flex">
-                            <!-- <input class="form-control text-center me-3" id="inputQuantity" type="num" value="1" style="max-width: 3rem" /> -->
-                            <!-- <form action="/product/<%= product._id %>/order" method="post">
-                                <button class="btn btn-outline-dark flex-shrink-0" type="button">
-                                    <i class="bi-cart-fill me-1"></i>
-                                    Place Order
-                                </button>
-                            </form> -->
                             <form method="post" action="/product/<%= product.id %>/order">
                                 <button style="width: 100%;" class="btn btn-dark btn-block ms-auto">Place Order</button>
                             </form>
@@ -83,6 +77,48 @@
                 </div>
             </div>
         </section>
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <% product.Images.forEach((productImg)=>{ %>
+                        <div class="col-md-4">
+                            <img src="<%= productImg %>" width="70%" >
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+        <section class="py-5 bg-light">
+            <div class="container px-4 px-lg-5 mt-5">
+                <h2 class="fw-bolder mb-4" style="text-align: center;">MORE FROM THIS SELLER</h2>
+                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                    <% merchProducts.forEach((product)=>{ %>
+                        <div class="col mb-5">
+                            <div class="card h-100">
+                                <img class="card-img-top" src="<%= product.Images[0] %>" width="100%" height="50%" alt="..." />
+                                 <!-- Product details-->
+                                <div class="card-body p-1">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder"><%= product.ProductName %></h5>
+                                        <p style="font-size: small;">Category: <%= product.Category %></p>
+                                        <!-- Product price-->
+                                        NGN <%= product.Price %>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/<%= product.id %>">View product</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+            </div>
+        </section>
+        <footer class="py-5 bg-dark">
+            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; TradeCon 2022</p></div>
+        </footer>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
         <script src="/assets/js/scripts.js"></script>

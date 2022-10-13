@@ -75,9 +75,14 @@ router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), asy
 router.get("/product/:productId/", async(req, res)=>{
     const product = await Product.findById(req.params.productId)
     const ProductOwner = await Merchant.findById(product.Owner.id)
+    const allProducts = await Product.find({})
+    const merchProducts = allProducts.filter((prod)=>
+        prod.Owner.id = product.Owner.id && prod._id != req.params.productId
+    )
+    // console.log(merchProducts)
     product.Views += 1
     await product.save()
-    res.render("viewproduct", {product, ProductOwner})
+    res.render("viewproduct", {product, ProductOwner, merchProducts})
 })
 
 router.post("/product/:productId/order", middleware.IsCustomer, middleware.orderPlaced, async(req, res)=>{
@@ -136,6 +141,12 @@ router.put("/product/:productId/edit", middleware.checkproductOwnership, async(r
 router.delete("/product/:productId", middleware.checkproductOwnership, async(req, res)=>{
     try {
         await Product.findByIdAndDelete(req.params.productId)
+        // const allOrders = await Order.find({})
+        // allOrders.filter((order)=>
+        //     order.Product === req.params.productId
+        // )
+        // await allOrders.save()
+        await Order.findOneAndDelete({Product: req.params.productId})
         req.flash("success", "Deleted product")
         res.redirect("back")
     } catch (error) {
