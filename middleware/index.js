@@ -66,9 +66,7 @@ middlewareObj.ownOrder = async function(req, res, next){
     
         if(userOrders.length !== 0){
             return next()
-            // return console.log("we can proceed")
         }
-        // console.log("ordeer already exists")
         req.flash("error", "Process cant continue")
         res.redirect("back")
     }else{

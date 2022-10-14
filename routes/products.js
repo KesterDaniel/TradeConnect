@@ -67,8 +67,8 @@ router.post("/addProduct", middleware.IsMerchant, parser.array("Images", 3), asy
         }
     } catch (error) {
         console.log(error)
-        // req.flash("error", "Something went wrong. Please check your connection and try again")
-        // res.redirect("back")
+        req.flash("error", "Something went wrong")
+        res.redirect("back")
     }
 })
 
@@ -111,10 +111,9 @@ router.post("/product/:productId/order", middleware.IsCustomer, middleware.order
         <p>Product Name: ${product.ProductName}</p>
         <p>Contact Buyer: ${Buyer.PhoneNumber}</p>
         <img src="${product.Images[0]}">
-        <p>Please contact the customer as soon as possible.</p>
+        <p>Please contact the customer as soon as possible. Thank You.</p>
         `
-        // message(productOwner.Email, `You have received an order from ${Buyer.Name} for the product ${product.ProductName}. Please contact the customer as soon as possible. Customer Number is ${Buyer.PhoneNumber}.`)
-        message(productOwner.Email, msg)
+        message("Order Received", productOwner.Email, msg)
         console.log("new order")
         req.flash("success", "You have successfully place an order for this product. You will be contacted by the merchant.")
         res.redirect("back")
@@ -141,11 +140,6 @@ router.put("/product/:productId/edit", middleware.checkproductOwnership, async(r
 router.delete("/product/:productId", middleware.checkproductOwnership, async(req, res)=>{
     try {
         await Product.findByIdAndDelete(req.params.productId)
-        // const allOrders = await Order.find({})
-        // allOrders.filter((order)=>
-        //     order.Product === req.params.productId
-        // )
-        // await allOrders.save()
         await Order.findOneAndDelete({Product: req.params.productId})
         req.flash("success", "Deleted product")
         res.redirect("back")

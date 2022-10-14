@@ -4,7 +4,8 @@ const passport = require("passport")
 const Customer = require("../models/customer")
 const middleware = require("../middleware/index")
 const Order = require("../models/order")
-
+const Merchant = require("../models/merchant")
+const message = require("../afterware/messaging")
 
 router.get("/customer/signup", (req, res)=>{
     res.render("regCust")
@@ -51,8 +52,18 @@ router.get("/customer/:customerID/orders", middleware.IsCustomer, async(req, res
 
 router.delete("/customer/:customerID/:orderID", middleware.ownOrder, async(req, res)=>{
     try {
+        const order = await Order.findById(req.params.orderID)
+        const merchantID = order.Merchant
+        const merchant = await Merchant.findById(merchantID)
+        const customer = await Customer.findById(req.params.customerID)
+        const msg = `
+        <p>The order placed by ${customer.Name} for the item below has been cancelled by the user </p>
+        <p>Product Name: ${order.ProductName}</p>
+        <img src="${order.ProductImage}">
+        `
         await Order.findByIdAndDelete(req.params.orderID)
-        req.flash("success", "You have deleted a product")
+        message("Order Cancelled", merchant.Email, msg)
+        req.flash("success", "You have deleted an order")
         res.redirect("back")
     } catch (error) {
         req.flash("error", "Something went wrong. Please contact support")

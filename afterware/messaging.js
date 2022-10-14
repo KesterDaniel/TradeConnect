@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer")
 
 
-function message(merchantEmail, msgTxt){
+function message(subtext, merchantEmail, msgTxt){
 
   var transporter = nodemailer.createTransport({
     secure: true,
@@ -16,7 +16,7 @@ function message(merchantEmail, msgTxt){
   var mailOptions = {
     from: 'tradeconnect59@gmail.com',
     to: merchantEmail,
-    subject: 'Order Received',
+    subject: subtext,
     html: msgTxt
   };
   
