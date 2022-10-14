@@ -8,18 +8,25 @@
     </div>
 <% }else{ %>
     <div class="container">
-        <% merchOrders.forEach((order)=>{ %>
-            <div>
-                <div>
-                    <h2><%= order.ProductName %></h2>
-                    <p><%= order.BuyerName %></p>
-                    <p>Contact: <%= order.PhoneNumber %></p>
+        <div class="list-group w-auto mt-3">
+            <% merchOrders.forEach((order)=>{ %>
+                <div class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                    <img src="<%= order.ProductImage %>" alt="twbs" width="100" height="100" class=" flex-shrink-0">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                      <div>
+                        <h2 class="mb-2"><%= order.ProductName %></h2>
+                        <p class="mb-2">Buyer: <%= order.BuyerName %></p>
+                        <p class="mb-2">Contact Buyer: <%= order.PhoneNumber %></p>
+                        <!-- <form method="post" action="/customer/<%= currentUser._id %>/<%= order._id %>?_method=delete">
+                          <button class="btn btn-dark">Delete order</button>
+                        </form> -->
+                      </div>
+                    </div>
                 </div>
-            </div>
-        <% }) %>
+            <% }) %>
+        </div>
     </div>
 <% } %>
-
 
 
 

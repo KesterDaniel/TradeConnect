@@ -11,6 +11,7 @@
                             <span>NGN <%= product.Price %></span>
                         </div>
                         <div class="lead mb-2"><%= product.Description %></div>
+                        <p>Seller: <%= ProductOwner.FirstName %> <%= ProductOwner.LastName %></p>
                         <p>Contact Seller: <%= ProductOwner.PhoneNumber %></p>
                         <div class="d-flex">
                             <form method="post" action="/product/<%= product.id %>/order">
@@ -25,8 +26,8 @@
             <div class="container px-4 px-lg-5 my-5">
                 <div class="row gx-4 gx-lg-5 align-items-center">
                     <% product.Images.forEach((productImg)=>{ %>
-                        <div class="col-md-4">
-                            <img src="<%= productImg %>" width="70%" >
+                        <div class="col-md-4 mb-3">
+                            <img src="<%= productImg %>" width="100%" >
                         </div>
                     <% }) %>
                 </div>
