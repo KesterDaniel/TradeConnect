@@ -27,6 +27,8 @@ router.post("/merchant/signup", async(req, res)=>{
             res.redirect("/merchant")
         })
     } catch (error) {
+        req.flash("error", error.message)
+        res.redirect("back")
         console.log(error)
     }
 })

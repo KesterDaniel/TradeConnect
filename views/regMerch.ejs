@@ -1,4 +1,100 @@
-<h1> Rgister Merchant </h1>
+<%- include("partials/pagesheader") %>
+<div class="container" style="margin: 5% auto;">
+    <form class="row g-3" action="/merchant/signup" method="post">
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">First Name</label>
+          <input type="text" class="form-control" name="FirstName" id="inputEmail4" required>
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Last Name</label>
+          <input type="text" class="form-control" name="LastName" id="inputEmail4" required>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Username</label>
+          <input type="text" class="form-control" id="inputPassword4" name="username" placeholder="Enter a Username" required>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword4" class="form-label">Password</label>
+          <input type="password" class="form-control" id="inputPassword4" name="password" required>
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" name="Email" id="inputEmail4" placeholder="JohnDoe@gmail.com" required>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPhone" class="form-label">Phone Number</label>
+          <input type="text" class="form-control" name="PhoneNumber" id="inputPhone" required>
+        </div>
+        <div class="col-md-12">
+          <label for="inputAddress" class="form-label">Address</label>
+          <input type="text" class="form-control" id="inputAddress" name="Address" required>
+        </div>
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">State</label>
+          <select id="inputState" class="form-select" name="State" required>
+            <option selected>Choose...</option>
+            <option value="Abuja FCT">Abuja FCT</option>
+            <option value="Abia">Abia</option>
+            <option value="Adamawa">Adamawa</option>
+            <option value="Akwa Ibom">Akwa Ibom</option>
+            <option value="Anambra">Anambra</option>
+            <option value="Bauchi">Bauchi</option>
+            <option value="Bayelsa">Bayelsa</option>
+            <option value="Benue">Benue</option>
+            <option value="Borno">Borno</option>
+            <option value="Cross River">Cross River</option>
+            <option value="Delta">Delta</option>
+            <option value="Ebonyi">Ebonyi</option>
+            <option value="Edo">Edo</option>
+            <option value="Ekiti">Ekiti</option>
+            <option value="Enugu">Enugu</option>
+            <option value="Gombe">Gombe</option>
+            <option value="Imo">Imo</option>
+            <option value="Jigawa">Jigawa</option>
+            <option value="Kaduna">Kaduna</option>
+            <option value="Kano">Kano</option>
+            <option value="Katsina">Katsina</option>
+            <option value="Kebbi">Kebbi</option>
+            <option value="Kogi">Kogi</option>
+            <option value="Kwara">Kwara</option>
+            <option value="Lagos">Lagos</option>
+            <option value="Nassarawa">Nassarawa</option>
+            <option value="Niger">Niger</option>
+            <option value="Ogun">Ogun</option>
+            <option value="Ondo">Ondo</option>
+            <option value="Osun">Osun</option>
+            <option value="Oyo">Oyo</option>
+            <option value="Plateau">Plateau</option>
+            <option value="Rivers">Rivers</option>
+            <option value="Sokoto">Sokoto</option>
+            <option value="Taraba">Taraba</option>
+            <option value="Yobe">Yobe</option>
+            <option value="Zamfara">Zamfara</option>
+          </select>
+        </div>
+        <!-- <div class="col-md-2">
+          <label for="inputZip" class="form-label">Zip</label>
+          <input type="text" class="form-control" id="inputZip">
+        </div> -->
+        <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" name="isMerchant" value="true" type="checkbox" id="gridCheck" required>
+            <label class="form-check-label" for="gridCheck">
+              Agree to terms and conditions of being a merchant
+            </label>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+      </form>
+</div>
+
+
+
+
+<!-- <%- include("partials/pagesfooter") %> -->
+<!-- <h1> Rgister Merchant </h1>
 
 <form action="/merchant/signup" method="post">
     <input type="text" id="name" name="FirstName" placeholder="Full Name">
@@ -11,4 +107,4 @@
     <input type="password" id="password" name="password" placeholder="password">
     <input type="checkbox" id="verify" name="isMerchant" value="true" placeholder="Agree to terms and conditions" required>
     <button>Submit</button>
-</form>
+</form> -->
