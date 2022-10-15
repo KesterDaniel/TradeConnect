@@ -34,7 +34,7 @@ router.post("/merchant/signup", async(req, res)=>{
 })
 
 router.get("/merchant", middleware.IsMerchant, async(req, res)=>{
-    const allProducts = await Product.find({})
+    const allProducts = await Product.find({}).sort({_id: -1})
     const ownedProducts = allProducts.filter((product)=>
         product.Owner.username == req.user.username
     )
