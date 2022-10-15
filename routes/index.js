@@ -4,7 +4,7 @@ const Product = require("../models/product")
 const middleware = require("../middleware/index")
 
 router.get("/", async(req, res)=>{
-    const allProducts = await Product.find({})
+    const allProducts = await Product.find({}).sort({ _id: -1 })
     res.render("home", {allProducts})
 })
 
