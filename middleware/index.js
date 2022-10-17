@@ -17,11 +17,11 @@ middlewareObj.checkproductOwnership = async function(req, res, next) {
                 res.redirect("back")
             }
         } catch (error) {
-            req.flash("error", "Sorry, Photo not found")
+            req.flash("error", "Sorry, Something went wrong")
             res.redirect("back")
         }
     }else{
-        req.flash("error", "You need to be logged in to do that")
+        req.flash("error", "You need to be logged in as a merchant")
         res.redirect("back")
     }
 }
@@ -39,7 +39,7 @@ middlewareObj.IsCustomer = function(req, res, next){
     if(req.isAuthenticated() && req.user.isCustomer){
         return next()
     }
-    req.flash("error", "You need to be logged in first")
+    req.flash("error", "You need to be logged in as a customer")
     res.redirect("/customer/login")
 }
 
@@ -53,7 +53,7 @@ middlewareObj.orderPlaced = async function(req, res, next){
         return next()
     }
     console.log("ordeer already exists")
-    req.flash("error", "You have alraedy placed an order for this product")
+    req.flash("error", "You have already placed an order for this product")
     res.redirect("back")
 }
 
