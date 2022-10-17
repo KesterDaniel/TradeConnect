@@ -1,4 +1,38 @@
-<h1>This is the product page</h1>
+<%- include("partials/merchantheader") %>
+
+<div class="container" style="margin: 10px auto;">
+    <form action="/addproduct" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Product Name</label>
+            <input type="text" name="ProductName" class="form-control" id="exampleFormControlInput1" required>
+        </div>
+        <div class="mb-3">
+            <label for="formFileMultiple" class="form-label">Product Images (Please upload just 3 images)</label>
+            <input class="form-control" name="Images" type="file" id="formFileMultiple" required multiple accept="images/*">
+        </div>
+        <select class="form-select mb-3" name="Category" aria-label="Default select example">
+            <option disabled selected>Pick a category for this product</option>
+            <option value="Clothing">Clothing</option>
+            <option value="Foot Wears">Foot Wears</option>
+            <option value="Accessories">Accessories</option>
+            <option value="Gadgets">Gadgets</option>
+            <option value="Stationaries">Stationaries</option>
+            <option value="Beauty">Beauty</option>
+            <option value="House-Hold">House-Hold</option>
+            <option value="Others">Others</option>
+        </select>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Product Description</label>
+            <textarea class="form-control" name="Description" id="exampleFormControlTextarea1" rows="4" placeholder="Please provide a detailed description of the product"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price (in Naira)</label>
+            <input type="number" id="price" name="Price" class="form-control" required>
+        </div>
+        <button class="btn btn-block btn-dark">Upload</button>
+    </form>
+</div>
+<!-- <h1>This is the product page</h1>
 
 <form action="/addproduct" method="post" enctype="multipart/form-data">
     <input type="text" id="name" name="ProductName" placeholder="Product Name">
@@ -16,4 +50,6 @@
     </select>
     <input type="number" id="price" name="Price" placeholder="Price in Naira">
     <button>Submit</button>
-</form>
+</form> -->
+
+<%- include("partials/merchantfooter") %>

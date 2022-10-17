@@ -5,18 +5,6 @@ const ProductSchema = new mongoose.Schema({
         type: String,
         // required: true
     },
-    // ImageOne: {
-    //     type: String,
-    //     required: true
-    // },
-    // ImageTwo: {
-    //     type: String,
-    //     required: true
-    // },
-    // ImageThree: {
-    //     type: String,
-    //     required: true
-    // },
     Images: [{
         type: String
     }],
@@ -45,7 +33,7 @@ const ProductSchema = new mongoose.Schema({
         username: String
     },
     Availability: {
-        type: String,
+        type: Boolean,
         default: true
     }
 })

@@ -20,14 +20,19 @@
                     <div class="card-body p-1">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder"><%= product.ProductName %></h5>
-                            <p style="font-size: small;">Category: <%= product.Category %></p>
+                            <h5 class="fw-bolder mb-1"><%= product.ProductName %></h5>
+                            <p class="mb-1" style="font-size: small;">Category: <%= product.Category %></p>
+                            <% if(product.Availability){ %>
+                              <p class="mb-2" style="font-size: small;">Status: Available</p>
+                            <% }else{ %>
+                              <p class="mb-2" style="font-size: small;">Status: Not Available</p>
+                            <% } %>
                             <!-- Product price-->
                             NGN <%= product.Price %>
                         </div>
                     </div>
                     <!-- Product actions-->
-                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent mt-0">
                         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="/product/<%= product.id %>">View product</a></div>
                     </div>
                 </div>

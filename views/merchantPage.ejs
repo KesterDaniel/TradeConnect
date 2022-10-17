@@ -6,7 +6,7 @@
   </div>
 <% }else{ %>
   <section class="py-5">
-    <div class="container px-4 px-lg-5 mt-5">
+    <div class="container px-4 px-lg-5 mt-2">
       <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
         <% ownedProducts.forEach((product)=>{ %>
           <div class="col mb-5" >
@@ -20,7 +20,7 @@
                         <h5 class="fw-bolder"><%= product.ProductName %></h5>
                         <p class="mb-1" style="font-size: small;">Category: <%= product.Category %></p>
                         <p class="mb-1">Price: <span style="color: lightgreen;">NGN </span><%= product.Price %></p>
-                        <p>Views: <%= product.Views %></p>
+                        <p style="margin-bottom: 0px;">Views: <%= product.Views %></p>
                     </div>
                 </div>
                 <!-- Product actions-->
