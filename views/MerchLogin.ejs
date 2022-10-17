@@ -13,7 +13,7 @@
 
     
 
-<link href="/assets/bootstrapstyle.css" rel="stylesheet">
+    <link href="/assets/bootstrapstyle.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -74,44 +74,41 @@
   </head>
   <body class="text-center">
     
-<main class="form-signin w-100 m-auto">
-  <form action="/merchant/login" method="post">
-    <div class="container">
-      <% if(error && error.length > 0){ %>
-      <div class="alert alert-danger mt-2" role="alert">
-          <%= error %>
-      </div>
-      <% } %>
-      <% if(success && success.length > 0){ %>
-      <div class="alert alert-success mt-2" role="alert">
-          <%= success %>
-      </div>
-      <% } %>
-  </div> 
-    <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
-    <h1>TRADECON</h1>
-    <h1 class="h3 mb-3 fw-normal">Log in as merchant</h1>
+    <main class="form-signin w-100 m-auto">
+      <form action="/merchant/login" method="post">
+        <div class="container">
+          <% if(error && error.length > 0){ %>
+          <div class="alert alert-danger mt-2" role="alert">
+              <%= error %>
+          </div>
+          <% } %>
+          <% if(success && success.length > 0){ %>
+          <div class="alert alert-success mt-2" role="alert">
+              <%= success %>
+          </div>
+          <% } %>
+      </div> 
+        <!-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
+        <h1>TRADECON</h1>
+        <h1 class="h3 mb-3 fw-normal">Log in as merchant</h1>
 
-    <div class="form-floating mb-2">
-      <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Enter your username">
-      <label for="floatingInput">USERNAME</label>
-    </div>
-    <div class="form-floating mb-2">
-      <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
-      <label for="floatingPassword">PASSWORD</label>
-    </div>
+        <div class="form-floating mb-2">
+          <input type="text" class="form-control" name="username" id="floatingInput" placeholder="Enter your username">
+          <label for="floatingInput">USERNAME</label>
+        </div>
+        <div class="form-floating mb-2">
+          <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+          <label for="floatingPassword">PASSWORD</label>
+        </div>
 
-    <!-- <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div> -->
-    <button class="w-100 btn btn-lg btn-dark" type="submit">Log In</button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
-  </form>
-</main>
-
-
-    
+        <!-- <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div> -->
+        <button class="w-100 btn btn-lg btn-dark" type="submit">Log In</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+      </form>
+    </main>    
   </body>
 </html>

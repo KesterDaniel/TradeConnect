@@ -13,6 +13,7 @@ const merchantRoute = require("./routes/merchantUser")
 const indexRoute = require("./routes/index")
 const Merchant = require("./models/merchant")
 const Customer = require("./models/customer")
+const { promiseImpl } = require("ejs")
 const app = express()
 const port = process.env.PORT
 
@@ -64,3 +65,4 @@ app.use(merchantRoute)
 app.listen(port, ()=>{
     console.log("server up")
 })
+
